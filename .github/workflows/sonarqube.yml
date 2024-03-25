@@ -49,6 +49,8 @@ jobs:
           distribution: 'temurin'
       - name: Build Project with Maven
         run: mvn install
+      - name: Build Project with Maven
+        run: mvn compile
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -58,7 +60,7 @@ jobs:
         with:
           args: 
             -Dsonar.projectKey=${{ secrets.SQ_REPO_SECRET }}            
-            -Dsonar.java.binaries=**/target/classes 
+            -Dsonar.java.binaries=**/target
             #-Dsonar.sources=src/main/java/ # optional, default is project base directory
            
       

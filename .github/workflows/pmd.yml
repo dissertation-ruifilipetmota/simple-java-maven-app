@@ -30,6 +30,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+      - name: Build Project with Maven
+        uses: mvn install
       - name: Run PMD
         uses: pmd/pmd-github-action@v2
         id: pmd

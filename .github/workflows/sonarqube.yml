@@ -47,8 +47,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Build Project with Maven
-        run: mvn install
+      
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master

@@ -46,6 +46,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }} 
+        with:
+          args: 
+            -Dsonar.projectKey=${{ secrets.SQ_REPO_SECRET }}
       
       
       #- name: Analyze with SonarQube

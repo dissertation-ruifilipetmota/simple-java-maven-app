@@ -41,6 +41,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Build Project with Maven
+        run: mvn install
+
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
@@ -49,7 +58,9 @@ jobs:
         with:
           args: 
             -Dsonar.projectKey=${{ secrets.SQ_REPO_SECRET }}
-      
+            #-Dsonar.sources=src/main/java/ # optional, default is project base directory
+            #-Dsonar.java.binaries=**/target/classes 
+           
       
       #- name: Analyze with SonarQube
 

@@ -47,7 +47,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      
+      - name: Build Project with Maven
+        run: mvn install
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -56,9 +57,9 @@ jobs:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }} 
         with:
           args: 
-            -Dsonar.projectKey=${{ secrets.SQ_REPO_SECRET }}
+            -Dsonar.projectKey=${{ secrets.SQ_REPO_SECRET }}            
+            -Dsonar.java.binaries=**/target/classes 
             #-Dsonar.sources=src/main/java/ # optional, default is project base directory
-            #-Dsonar.java.binaries=**/target/classes 
            
       
       #- name: Analyze with SonarQube
